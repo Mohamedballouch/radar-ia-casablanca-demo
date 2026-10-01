@@ -65,9 +65,25 @@
           </aside>
         </section>
 
+        <section class="brief" aria-labelledby="brief-title">
+          <div class="brief__heading">
+            <div>
+              <p class="eyebrow eyebrow--dark">03 / Brief d’arbitrage</p>
+              <h2 id="brief-title">Note à partager</h2>
+              <p>La note reprend l’état courant du comparateur. Elle reste dans votre navigateur : rien n’est envoyé.</p>
+            </div>
+            <div class="brief__actions">
+              <button id="copy-brief" class="action-button action-button--primary" type="button">Copier la note</button>
+              <button id="print-brief" class="action-button" type="button">Imprimer / enregistrer en PDF</button>
+            </div>
+          </div>
+          <p id="brief-status" class="brief__status" role="status" aria-live="polite"></p>
+          <pre id="brief-text" class="brief__text" aria-label="Aperçu de la note d’arbitrage"></pre>
+        </section>
+
         <section class="method" aria-labelledby="method-title">
           <div>
-            <p class="eyebrow eyebrow--dark">03 / Méthode</p>
+            <p class="eyebrow eyebrow--dark">04 / Méthode</p>
             <h2 id="method-title">Un calcul que l’on peut discuter</h2>
             <p>Chaque note va de 1 (faible) à 5 (élevé). Pour l’effort et le risque, une note faible améliore le score. Les poids sont un point de départ pour l’atelier, pas une vérité universelle.</p>
           </div>

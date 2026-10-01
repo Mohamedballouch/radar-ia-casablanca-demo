@@ -1,30 +1,37 @@
 import './style.css';
-import { CRITERIA, EXAMPLES, rankUseCases, scoreUseCase } from './scoring.js';
+import { CRITERIA, EXAMPLES, scoreUseCase } from './scoring.js';
+import { buildBrief, displayName, leaderSummary, rankWithTies } from './brief.js';
 
 const cards = document.querySelector('#cards');
 const ranking = document.querySelector('#ranking');
 const leader = document.querySelector('#leader');
 const resetButton = document.querySelector('#reset');
+const briefText = document.querySelector('#brief-text');
+const briefStatus = document.querySelector('#brief-status');
+const copyButton = document.querySelector('#copy-brief');
+const printButton = document.querySelector('#print-brief');
 let useCases = EXAMPLES.map((item) => ({ ...item }));
 
-function displayName(name) {
-  return name.trim() || 'Cas d’usage sans nom';
+function renderBrief() {
+  briefText.textContent = buildBrief(useCases);
+  // A previous "copied" message no longer describes the current note.
+  if (briefStatus.textContent) briefStatus.textContent = '';
 }
 
 function renderRanking() {
-  const sorted = rankUseCases(useCases);
+  const sorted = rankWithTies(useCases);
   ranking.replaceChildren();
 
-  sorted.forEach((item, index) => {
+  sorted.forEach((item) => {
     const row = document.createElement('li');
     row.className = 'ranking-row';
-    if (index === 0) row.classList.add('is-first');
+    if (item.rank === 1) row.classList.add('is-first');
 
     const heading = document.createElement('div');
     heading.className = 'ranking-row__heading';
 
     const name = document.createElement('span');
-    name.textContent = `${index + 1}. ${displayName(item.name)}`;
+    name.textContent = `${item.rank}. ${displayName(item.name)}${item.tied ? ' (ex æquo)' : ''}`;
     const score = document.createElement('strong');
     score.textContent = `${item.score}/100`;
     heading.append(name, score);
@@ -39,7 +46,8 @@ function renderRanking() {
     ranking.append(row);
   });
 
-  leader.textContent = `${displayName(sorted[0].name)} arrive en tête selon ces hypothèses (${sorted[0].score}/100).`;
+  leader.textContent = `${leaderSummary(sorted)}, selon ces hypothèses.`;
+  renderBrief();
 }
 
 function renderCards() {
@@ -112,6 +120,20 @@ function renderCards() {
   });
   renderRanking();
 }
+
+copyButton.addEventListener('click', async () => {
+  const text = buildBrief(useCases);
+  briefStatus.textContent = '';
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+    await navigator.clipboard.writeText(text);
+    briefStatus.textContent = 'Note copiée dans le presse-papiers.';
+  } catch {
+    briefStatus.textContent = 'Copie impossible : le navigateur refuse l’accès au presse-papiers. Sélectionnez le texte de la note ci-dessous et copiez-le avec Ctrl+C.';
+  }
+});
+
+printButton.addEventListener('click', () => window.print());
 
 resetButton.addEventListener('click', () => {
   useCases = EXAMPLES.map((item) => ({ ...item }));

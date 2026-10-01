@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.pdo/
+.DS_Store

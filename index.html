@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102b2a" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23102b2a'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='45' fill='%23c8dfaa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+    <meta name="description" content="Comparer trois cas d’usage IA avec des critères transparents lors d’un atelier de priorisation." />
+    <title>Radar IA · Atelier Casablanca</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Radar IA, retour en haut">
+          <span class="brand__mark" aria-hidden="true">✳</span>
+          <span>RADAR <strong>IA</strong></span>
+        </a>
+        <span class="topbar__edition">Atelier équipe · Casablanca</span>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero__copy">
+            <p class="eyebrow">Outil d’arbitrage · Démonstration</p>
+            <h1 id="hero-title">Quelle idée explorer <em>en premier&nbsp;?</em></h1>
+            <p class="hero__lead">Comparez trois cas d’usage avec les mêmes critères. Les notes sont des hypothèses d’atelier, visibles et modifiables par toute l’équipe.</p>
+            <div class="hero__facts" aria-label="Caractéristiques">
+              <span>3 cas comparés</span><span>4 critères explicites</span><span>0 donnée envoyée</span>
+            </div>
+          </div>
+          <div class="hero__art" aria-hidden="true">
+            <div class="orb orb--one"></div><div class="orb orb--two"></div><div class="orb orb--three"></div>
+            <div class="hero__art-label">Observer · Comparer · Décider</div>
+          </div>
+        </section>
+
+        <div class="context-note" role="note">
+          <span class="context-note__icon" aria-hidden="true">i</span>
+          <p><strong>Exemples fictifs.</strong> Ce score aide à discuter des priorités. Il ne remplace ni une étude de faisabilité, ni un chiffrage, ni une décision humaine.</p>
+        </div>
+
+        <section class="workspace" aria-label="Comparateur">
+          <div class="workspace__main">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow eyebrow--dark">01 / Hypothèses</p>
+                <h2>Notez les cas d’usage</h2>
+                <p>Déplacez les curseurs de 1 à 5. Le classement se met à jour immédiatement.</p>
+              </div>
+              <button id="reset" class="reset-button" type="button">Réinitialiser les exemples</button>
+            </div>
+            <div id="cards" class="case-grid"></div>
+          </div>
+
+          <aside class="result-panel" aria-labelledby="result-title">
+            <p class="eyebrow">02 / Lecture commune</p>
+            <h2 id="result-title">Classement indicatif</h2>
+            <p class="result-panel__intro">Les mêmes poids s’appliquent aux trois idées. Un score élevé signifie seulement qu’un cas paraît plus intéressant <em>avec ces hypothèses</em>.</p>
+            <ol id="ranking" class="ranking" aria-label="Cas classés par score"></ol>
+            <p id="leader" class="leader" aria-live="polite"></p>
+            <div class="next-step">
+              <span class="next-step__label">Étape suivante</span>
+              <p>Valider les données, les risques et le coût réel avec les personnes concernées avant de lancer un projet.</p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="method" aria-labelledby="method-title">
+          <div>
+            <p class="eyebrow eyebrow--dark">03 / Méthode</p>
+            <h2 id="method-title">Un calcul que l’on peut discuter</h2>
+            <p>Chaque note va de 1 (faible) à 5 (élevé). Pour l’effort et le risque, une note faible améliore le score. Les poids sont un point de départ pour l’atelier, pas une vérité universelle.</p>
+          </div>
+          <div class="weight-grid" aria-label="Poids des critères">
+            <div><strong>40 %</strong><span>Impact métier</span></div>
+            <div><strong>25 %</strong><span>Données prêtes</span></div>
+            <div><strong>20 %</strong><span>Effort faible</span></div>
+            <div><strong>15 %</strong><span>Risque faible</span></div>
+          </div>
+          <details>
+            <summary>Voir la formule exacte</summary>
+            <p>Score sur 100 = 40 × (impact − 1) / 4 + 25 × (données − 1) / 4 + 20 × (5 − effort) / 4 + 15 × (5 − risque) / 4. Le résultat est arrondi à l’entier le plus proche. En cas d’égalité, l’ordre initial est conservé.</p>
+          </details>
+        </section>
+      </main>
+
+      <footer>Radar IA · Prototype local pour l’atelier PDSF × PDO · Aucune donnée transmise</footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

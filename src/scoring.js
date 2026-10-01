@@ -7,8 +7,8 @@ export const EXAMPLES = [
 export const CRITERIA = [
   { key: 'impact', label: 'Impact métier', hint: '5 = impact élevé', weight: 40 },
   { key: 'data', label: 'Données disponibles', hint: '5 = données prêtes', weight: 25 },
-  { key: 'effort', label: 'Effort de réalisation', hint: '1 = effort faible', weight: 20 },
-  { key: 'risk', label: 'Risque de mise en œuvre', hint: '1 = risque faible', weight: 15 },
+  { key: 'effort', label: 'Effort de réalisation', hint: '1 = effort faible', weight: 20, lowerIsBetter: true },
+  { key: 'risk', label: 'Risque de mise en œuvre', hint: '1 = risque faible', weight: 15, lowerIsBetter: true },
 ];
 
 function rating(value, key) {

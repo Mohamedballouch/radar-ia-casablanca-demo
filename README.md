@@ -8,8 +8,7 @@ Un mini-produit local, en français, pour comparer trois idées d’automatisati
 - Quatre notes de 1 à 5 par cas : impact métier, disponibilité des données, effort de réalisation et risque.
 - Un classement qui change immédiatement lorsque l’on modifie une hypothèse.
 - Un calcul et des pondérations visibles, un bouton pour rétablir les exemples.
-
-Le **brief d’arbitrage à copier et imprimer** constitue la prochaine tranche fonctionnelle à réaliser pendant la démonstration PDO. Il n’est pas présent dans cette première version.
+- Un **brief d’arbitrage** (note en français) qui reflète l’état courant : cas en tête ou ex æquo signalés, scores des trois cas, notes du candidat prioritaire, pondérations, mention « Données fictives · score indicatif » et prochaine étape. Boutons **Copier la note** (presse-papiers, avec message de confirmation ou d’échec) et **Imprimer / enregistrer en PDF** (impression du navigateur, feuille A4 sans les contrôles). Rien n’est envoyé à un service externe.
 
 Captures du socle : [vue complète sur ordinateur](docs/assets/radar-baseline-desktop.png) et [vue mobile](docs/assets/radar-baseline-mobile.png).
 
@@ -36,11 +35,11 @@ npm run build
 
 ## Démonstration métier en cinq minutes
 
-1. Présenter les trois cartes et rappeler que les notes sont fictives.
-2. Montrer le classement initial et ouvrir la formule.
-3. Augmenter l’effort du premier cas ou réduire sa disponibilité des données : le classement réagit.
-4. Discuter avec l’équipe : les poids 40/25/20/15 correspondent-ils à notre contexte ?
-5. Revenir aux exemples, puis annoncer l’amélioration du ticket : produire un brief transmissible à un manager.
+1. **Modifier un critère** : présenter les trois cartes (notes fictives), puis passer « Données disponibles » de *Recherche documentaire interne* de 3 à 5 (curseur à la souris ou flèches du clavier).
+2. **Observer le classement** : le cas passe de 70 à 83/100 et prend la tête devant *Synthèse des rendez-vous clients* (81/100). Ouvrir la formule pour discuter des poids 40/25/20/15.
+3. **Copier la note** : dans « Brief d’arbitrage », cliquer sur *Copier la note* ; le message « Note copiée dans le presse-papiers » confirme la copie. Coller le texte dans un message : il décrit la comparaison courante, signale les ex æquo et rappelle que le score n’est ni un ROI ni une décision.
+4. **Imprimer ou enregistrer en PDF** : cliquer sur *Imprimer / enregistrer en PDF* ; l’aperçu A4 ne montre que la note, sans curseurs ni boutons. Choisir « Enregistrer au format PDF » pour la transmettre.
+5. Cliquer sur *Réinitialiser les exemples* : le classement (81/70/48) et la note reviennent aux trois exemples fictifs.
 
 ## Où interviennent PDSF et PDO ?
 
@@ -67,8 +66,10 @@ Il est arrondi à l’entier le plus proche. Un score plus élevé indique une h
 index.html               interface
 src/main.js              interactions et affichage
 src/scoring.js           fonction de score et classement
+src/brief.js             note d’arbitrage (texte pur, ex æquo)
 src/style.css            présentation et mise en page mobile
-tests/scoring.test.js    tests déterministes
+tests/scoring.test.js    tests déterministes du score
+tests/brief.test.js      tests déterministes de la note d’arbitrage
 CONTEXT.md               vocabulaire de l’atelier
 docs/adr/                décisions de conception
 .agents/skills/          skills PDSF installés dans le dépôt

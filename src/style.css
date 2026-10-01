@@ -50,7 +50,7 @@ h2 { margin-bottom: 8px; font-size: clamp(1.55rem, 2.1vw, 2.1rem); line-height: 
 .section-heading p:last-child { color: #64736c; font-size: .88rem; margin: 0; }
 .reset-button { flex-shrink: 0; border: 1px solid #bcc9bc; background: #fff; color: #305449; border-radius: 11px; padding: 10px 13px; font-size: .78rem; font-weight: 700; box-shadow: 0 2px 5px rgba(23,45,36,.04); }
 .reset-button:hover { background: #e6efdf; }
-.reset-button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid #dc875f; outline-offset: 3px; }
+.reset-button:focus-visible, .action-button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid #dc875f; outline-offset: 3px; }
 .case-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
 .case-card { min-width: 0; padding: 19px; border: 1px solid #dde3d9; border-radius: 18px; background: #fff; box-shadow: 0 5px 20px rgba(26, 53, 41, .045); }
 .case-card__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -79,6 +79,18 @@ h2 { margin-bottom: 8px; font-size: clamp(1.55rem, 2.1vw, 2.1rem); line-height: 
 .next-step { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccdacb; }
 .next-step__label { color: #66815d; text-transform: uppercase; letter-spacing: .13em; font-size: .68rem; font-weight: 830; }
 .next-step p { margin: 8px 0 0; color: #53695e; font-size: .81rem; line-height: 1.6; }
+
+.brief { margin: 0 clamp(20px, 4vw, 64px) 26px; padding: 27px 32px; border-radius: 20px; background: #fff; border: 1px solid #e2e7dd; }
+.brief__heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 24px; }
+.brief__heading h2 { font-size: 1.6rem; }
+.brief__heading p:last-child { color: #627168; font-size: .84rem; line-height: 1.6; margin: 0; }
+.brief__actions { display: flex; flex-wrap: wrap; gap: 9px; }
+.action-button { border: 1px solid #bcc9bc; background: #fff; color: #305449; border-radius: 11px; padding: 10px 14px; font-size: .8rem; font-weight: 750; }
+.action-button:hover { background: #e6efdf; }
+.action-button--primary { border-color: #173c37; background: #173c37; color: #f5f5e9; }
+.action-button--primary:hover { background: #24534b; }
+.brief__status { min-height: 1.4em; margin: 14px 0 8px; color: #275744; font-size: .82rem; font-weight: 700; }
+.brief__text { margin: 0; padding: 18px 20px; max-height: 420px; overflow: auto; border-radius: 12px; background: #f2f5ed; color: #16322f; font-family: inherit; font-size: .84rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
 
 .method { margin: 0 clamp(20px, 4vw, 64px) 55px; padding: 27px 32px; border-radius: 20px; background: #fff; border: 1px solid #e2e7dd; display: grid; grid-template-columns: minmax(260px, .75fr) 1fr; gap: 20px 45px; }
 .method h2 { font-size: 1.6rem; }
@@ -126,11 +138,23 @@ footer { padding: 25px 20px 35px; text-align: center; color: #7f8e81; font-size:
   .criterion:nth-child(even) { border-left: 0; padding-left: 0; }
   .result-panel { display: block; padding: 23px; }
   .ranking { margin: 24px 0; }
-  .method { padding: 24px 20px; }
+  .method, .brief { padding: 24px 20px; }
+  .brief__actions, .action-button { width: 100%; }
   .weight-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ranking-row__track span { transition: none; }
+}
+
+/* Printing (or saving as PDF) shows only the Brief d’arbitrage, on A4, without any input control. */
+@page { size: A4; margin: 18mm 16mm; }
+
+@media print {
+  :root { background: #fff; color: #000; }
+  body { min-width: 0; }
+  .topbar, .hero, .context-note, .workspace, .method, footer, .brief__heading, .brief__status { display: none; }
+  .brief { margin: 0; padding: 0; border: 0; border-radius: 0; }
+  .brief__text { max-height: none; overflow: visible; padding: 0; background: none; color: #000; font-size: 11pt; line-height: 1.5; }
 }

@@ -34,6 +34,8 @@ Conserver les mêmes identifiants de dépôt, d'issue et de run sur les slides, 
 
 **Le produit démo :** « Radar des cas d'usage IA » compare trois cas *fictifs* — synthèse de rendez-vous client, recherche documentaire et tri des demandes. La grille de score explicite impact, disponibilité des données, effort et risque. La demande à implémenter ajoute une **note d'arbitrage** facile à copier et à imprimer : classement, critères, réserves et prochaine étape prudente. Ce prototype ne lit aucune donnée d'entreprise et ne décide pas à la place d'un responsable.
 
+**Fil conducteur adapté au format 40 minutes :** une demande métier claire, un run observable, puis une décision humaine sur la PR. À trois moments, demander une réponse brève à la salle : « Que faut-il dans la note pour décider ? », « Que fait-on si la vérification échoue ? » et « Ces preuves suffisent-elles pour demander une revue de PR ? ». Ces échanges remplacent le long *grilling* d'un dojo technique ; ils ne doivent pas être présentés comme l'exécution d'un nœud Grill ou du mode `context` de PDSF. Le public voit la vraie issue #1, le pipeline `atelier-radar-ia`, le run terminé et la PR #2 en brouillon.
+
 ## Préparation hors séance — à terminer avant lundi
 
 Ces contrôles se font **hors projection**. Ils ne remplacent pas l'authentification ; ne jamais afficher de jeton, variable secrète, fichier de configuration privé ou donnée client sur le vidéoprojecteur.
@@ -85,21 +87,32 @@ Le [run de préparation](http://localhost:5172/runs/20261001-183530-abd2d8d/revi
 | Minute | À montrer / faire | Phrase utile et preuve attendue |
 | --- | --- | --- |
 | **00–02** | Slide d'ouverture et objectif. | « Nous partons d'un besoin simple et allons voir la trace qui relie ticket, décision, exécution et revue. » |
-| **02–06** | Radar IA dans le navigateur : trois cartes, critères et scores. | Les cas sont fictifs ; demander « lequel prioriseriez-vous et pourquoi ? ». Montrer que le score a des critères lisibles, pas une valeur sortie d'un LLM sans explication. |
+| **02–06** | Radar IA dans le navigateur : trois cartes, critères et scores. | Les cas sont fictifs ; demander « lequel prioriseriez-vous et pourquoi ? » puis « quelle note aiderait votre manager à arbitrer ? ». Montrer que le score a des critères lisibles, pas une valeur sortie d'un LLM sans explication. |
 | **06–10** | Slide « PDSF ≠ PDO » et dossier du dépôt sur `develop` : `AGENTS.md`, `CONTEXT.md`, `docs/adr`, `.agents/skills`. | Montrer le résultat réellement commité de `/build-factory` **scaffold**. Le glossaire et l'ADR existent, mais ont été rédigés séparément ; le mode **context** du skill reste à faire. |
-| **10–14** | GitHub Issue : objectif de la note, parcours et critères d'acceptation. | Faire lire deux critères métier : copier le texte et imprimer une note qui conserve le classement et les réserves. L'issue est une demande, pas une synchronisation automatique avec PDO. |
-| **14–19** | PDO **Pipelines → `atelier-radar-ia`** : nœuds et branche pass/fail. | Faire nommer les rôles par le public. Montrer la sortie structurée du vérificateur et la limite de trois passages. Le pipeline est réutilisable ; il ne contient pas un dépôt GitHub fixe. |
+| **10–14** | GitHub Issue : objectif de la note, parcours et critères d'acceptation. | Poser une seule question de clarification métier : « quelles réserves doivent apparaître dans la note ? ». Faire lire deux critères : copier le texte et imprimer une note qui conserve le classement. L'issue est une demande, pas une synchronisation automatique avec PDO. |
+| **14–19** | PDO **Pipelines → `atelier-radar-ia`** : nœuds et branche pass/fail. | Demander « si la vérification échoue, on rédige le brief ou on revient au développement ? ». Montrer la sortie structurée du vérificateur et la limite de trois passages. Le pipeline est réutilisable ; il ne contient pas un dépôt GitHub fixe. |
 | **19–23** | PDO **Runs → New Run** : dépôt local Ubuntu, branche source `develop`, pipeline, nom explicite, [URL du ticket #1](https://github.com/Mohamedballouch/radar-ia-casablanca-demo/issues/1) dans le prompt. | Lire à voix haute les cinq choix avant **Launch**. Nom conseillé : `Radar IA — issue #1 — note d'arbitrage`. Le chemin Git local et `origin` déterminent le dépôt ; le lien du ticket guide le nœud de lecture. |
 | **23–25** | Cliquer **Launch** une fois ; relever l'ID du nouveau run. | Dire qu'une exécution peut durer plus que le temps imparti. Basculer ensuite vers le run de préparation **déjà terminé**, en l'annonçant. |
 | **25–33** | Ouvrir le [run terminé `20261001-183530-abd2d8d`](http://localhost:5172/runs/20261001-183530-abd2d8d/review) : **Start**, les quatre nœuds, **Inputs / Outputs / Terminal**, **Info**, **Repositories**, **Diff**, et **YAML** si le temps le permet. | Lire les vraies sorties : résumé du ticket, changements, verdict `pass` avec `npm test` 12/12 et build réussi, brief manager. La QA Chromium séparée vérifie aussi copie, impression A4, clavier, ex æquo, mobile et absence de requêtes externes. Le diff est à examiner avant publication. |
-| **33–36** | Ouvrir la note issue du run sur `http://localhost:5174` si le serveur répond ; copier puis imprimer/prévisualiser. Utiliser la PR #2 ou une capture du worktree si nécessaire. | Distinguer la comparaison du starter sur `5173` de la note ajoutée dans le worktree du run. La [PR #2](https://github.com/Mohamedballouch/radar-ia-casablanca-demo/pull/2) est ouverte en brouillon et non fusionnée. |
+| **33–36** | Ouvrir la note issue du run sur `http://localhost:5174` si le serveur répond ; copier puis imprimer/prévisualiser. Utiliser la PR #2 ou une capture du worktree si nécessaire. | Demander « ces preuves suffisent-elles pour demander une revue de PR ? ». Distinguer le starter sur `5173` de la note ajoutée dans le worktree du run. La [PR #2](https://github.com/Mohamedballouch/radar-ia-casablanca-demo/pull/2) est ouverte en brouillon et non fusionnée. |
 | **36–40** | Questions, limites et prochain essai d'équipe. | Inviter à proposer un vrai cas **sans données sensibles** à transformer d'abord en ticket clair. Réponses courtes ci-dessous. |
 
 Si une séquence prend du retard, préserver **l'inspection des sorties et du diff** ; raccourcir la construction visuelle du pipeline et la navigation GitHub. Ne pas attendre en silence la fin d'un agent.
 
+### Trois échanges courts avec la salle
+
+| Moment | Question (30 à 45 secondes) | Réponse à faire ressortir |
+| --- | --- | --- |
+| Besoin métier | « Pour choisir un cas d'usage, quelle information manque au score ? » | Une note transmissible avec le classement, les critères, les réserves et une prochaine étape prudente. C'est le périmètre de l'issue #1. |
+| Pipeline | « Si le vérificateur répond `fail`, quelle étape vient ensuite ? » | Retour borné au développement, lecture du motif d'échec, nouvelle vérification ; pas de brief final sur un résultat en échec. |
+| Validation | « La note fonctionne et les tests passent : peut-on fusionner ? » | On peut demander une revue de la PR en brouillon après inspection du diff et de l'interface. La fusion reste une décision humaine distincte. |
+
+Ces échanges illustrent l'intérêt des clarifications et des points de contrôle. Ils ne simulent pas un vrai *grilling* de PDSF, qui peut nécessiter une séance dédiée, ni une action automatique de GitHub.
+
 ## Démo guidée : gestes et preuves à verbaliser
 
 1. **Produit avant les outils.** Montrer les trois cas et demander ce que le manager voudrait recevoir pour décider. La nouvelle issue répond à cette question : une note transmissible, pas seulement un score à l'écran.
+   Cette question est une interaction de découverte pour la salle. Elle n'est pas une session de *grilling* exécutée par PDO.
 2. **PDSF dans le dépôt.** Sur `develop`, ouvrir `AGENTS.md`, `.agents/skills/` et les ports de backlog créés par `/build-factory` **scaffold**. Montrer le glossaire de `CONTEXT.md` et l'ADR existant comme des textes **rédigés séparément** ; le mode **context** du skill n'a pas été exécuté. Expliquer le chemin prévu, demande métier → conception → tickets techniques autoporteurs. L'issue #1 de la démo a été rédigée directement ; ne pas prétendre qu'elle sort des skills `/to-us`, `/to-spec` ou `/to-tickets` si ceux-ci n'ont pas été exécutés.
 3. **Issue GitHub.** Montrer le titre, les critères et l'exclusion des données réelles. Dans Ubuntu, commande possible : `gh issue view "$RADAR_ISSUE" --repo "$RADAR_REPO"`. Le prompt du nœud **Lire le ticket** doit lui donner un moyen concret de résoudre cette issue ; le seul collage d'une URL n'installe pas de webhook.
 4. **Pipeline PDO.** Expliquer qu'un nœud produit un artefact qui devient l'entrée du suivant. Cliquer sur la condition de revue : `pass` avance, `fail` reboucle de façon bornée. Le dernier nœud reformule pour un manager ; il n'effectue pas de déploiement.

@@ -2,7 +2,7 @@
 
 **Lundi 5 octobre 2026 · 40 minutes · équipe mixte métier/technique**
 
-Ce dossier accompagne un atelier en français autour de **Radar IA**, un petit produit fictif qui compare trois idées d'automatisation. L'objectif est de montrer un parcours vérifiable : besoin métier → ticket GitHub → méthode PDSF dans le dépôt → pipeline PDO → exécution isolée → revue → décision de publication.
+Ce dossier accompagne un atelier en français autour de **Radar IA**, un petit produit fictif qui compare trois idées d'automatisation. En 40 minutes, l'équipe suit un parcours vérifiable : **une demande métier, un run observable, une décision de revue**. Trois questions courtes invitent le public à préciser la note attendue, choisir la suite après un échec de vérification et décider si la PR mérite une revue.
 
 ## Supports prêts à présenter
 

@@ -44,7 +44,7 @@ npm run build
 
 ## Où interviennent PDSF et PDO ?
 
-**PDSF** fournit dans ce dépôt des skills de méthode : cadrage métier, conception, tickets techniques, implémentation et contrôle. Les skills ont été installés depuis le checkout local dans `.agents/skills/`, avec les liens Claude Code dans `.claude/skills` et `CLAUDE.md`. Le dépôt contient un premier glossaire [`CONTEXT.md`](CONTEXT.md) et une décision de conception [`docs/adr/0001-score-indicatif.md`](docs/adr/0001-score-indicatif.md). **`/build-factory` n’a pas encore été exécuté** : les deux backlogs et le contexte fondateur restent à câbler avec l’équipe. Ne pas présenter cette installation comme une factory complète.
+**PDSF** fournit dans ce dépôt des skills de méthode : cadrage métier, conception, tickets techniques, implémentation et contrôle. Les skills ont été installés depuis le checkout local dans `.agents/skills/`, avec les liens Claude Code dans `.claude/skills` et `CLAUDE.md`. Le mode *scaffold* de `/build-factory` a été exécuté sur la branche `develop` : il a câblé le backlog métier local, les GitHub Issues comme backlog technique, les cinq états de triage et les documents de méthode sous `docs/agents/`. Le dépôt contient déjà le glossaire [`CONTEXT.md`](CONTEXT.md) et une décision de conception [`docs/adr/0001-score-indicatif.md`](docs/adr/0001-score-indicatif.md). Le mode *context* de `/build-factory`, qui approfondit le domaine avec l’équipe, reste un travail ultérieur ; ne pas présenter ce premier cadrage comme une analyse métier exhaustive.
 
 **PDO** est l’orchestrateur local de l’exécution. Choisir le chemin de ce dépôt comme **Target repository** dans New Run, puis un pipeline comme `atelier-radar-ia`. L’issue GitHub complète ira dans le prompt du run. PDO crée un worktree isolé, exécute les nœuds, conserve leurs sorties et permet d’inspecter le terminal, les contrôles et le Diff. Une exécution locale ne publie pas automatiquement le résultat sur GitHub.
 
@@ -72,4 +72,7 @@ tests/scoring.test.js    tests déterministes
 CONTEXT.md               vocabulaire de l’atelier
 docs/adr/                décisions de conception
 .agents/skills/          skills PDSF installés dans le dépôt
+docs/agents/             choix de méthode créés par /build-factory
+docs/business-backlog/   backlog métier local
+workshop/pipeline/        définition du pipeline PDO de l’atelier
 ```

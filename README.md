@@ -46,7 +46,7 @@ npm run build
 
 **PDSF** fournit dans ce dépôt des skills de méthode : cadrage métier, conception, tickets techniques, implémentation et contrôle. Les skills ont été installés depuis le checkout local dans `.agents/skills/`, avec les liens Claude Code dans `.claude/skills` et `CLAUDE.md`. Le dépôt contient un premier glossaire [`CONTEXT.md`](CONTEXT.md) et une décision de conception [`docs/adr/0001-score-indicatif.md`](docs/adr/0001-score-indicatif.md). **`/build-factory` n’a pas encore été exécuté** : les deux backlogs et le contexte fondateur restent à câbler avec l’équipe. Ne pas présenter cette installation comme une factory complète.
 
-**PDO** est l’orchestrateur local de l’exécution. Choisir le chemin de ce dépôt comme **Target repository** dans New Run, puis un pipeline comme `issue-to-demo`. L’issue GitHub complète ira dans le prompt du run. PDO crée un worktree isolé, exécute les nœuds, conserve leurs sorties et permet d’inspecter le terminal, les contrôles et le Diff. Une exécution locale ne publie pas automatiquement le résultat sur GitHub.
+**PDO** est l’orchestrateur local de l’exécution. Choisir le chemin de ce dépôt comme **Target repository** dans New Run, puis un pipeline comme `atelier-radar-ia`. L’issue GitHub complète ira dans le prompt du run. PDO crée un worktree isolé, exécute les nœuds, conserve leurs sorties et permet d’inspecter le terminal, les contrôles et le Diff. Une exécution locale ne publie pas automatiquement le résultat sur GitHub.
 
 ## Décision de calcul
 
